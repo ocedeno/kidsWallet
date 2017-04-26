@@ -10,39 +10,87 @@ import UIKit
 
 class LoginViewController: UIViewController
 {
+    @IBOutlet weak var loginCard: UIStackView!
+    @IBOutlet weak var loginLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signupLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signupCard: UIStackView!
     
-    @IBOutlet weak var profileImageView: UIButton!
-    @IBOutlet weak var addUserButton: UIButton!
+    override var prefersStatusBarHidden: Bool
+    {
+        return true
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(true)
         
-        setupImageView()
+        self.view.sendSubview(toBack: loginCard)
+        loginCard.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi/2))
+        loginLeadingConstraint.constant = 134
     }
     
-    func setupImageView()
+    @IBAction func clickedLogin(_ sender: Any)
     {
-        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.borderWidth = 5.0
-        profileImageView.layer.borderColor = UIColor.white.cgColor
-        profileImageView.setImage(UIImage.profilePlaceholder(), for: .normal)
+        if loginLeadingConstraint.constant == 134
+        {
+            UIView.animate(withDuration: 0.5, animations:
+            {
+                self.signupCard.transform = CGAffineTransform(translationX: 50, y: 200).rotated(by: 100)
+                self.loginCard.transform = CGAffineTransform(translationX: -50, y: -200).rotated(by: -100)
+                self.loginLeadingConstraint.constant = 46
+                self.view.layoutIfNeeded()
+                self.view.sendSubview(toBack: self.signupCard)
+                
+            })
+            {(true) in
+                UIView.animate(withDuration: 0.4, animations:
+                {
+                    self.signupCard.transform = CGAffineTransform(translationX: 100, y: -200).rotated(by: -150)
+                    self.loginCard.transform = CGAffineTransform(translationX: -100, y: 200).rotated(by: 150)
+                    
+                    self.loginCard.transform = CGAffineTransform(translationX: 0, y: 0).rotated(by:0)
+                    self.signupCard.transform = CGAffineTransform(translationX: 0, y: 0).rotated(by:-CGFloat(Double.pi/2))
+                    
+                    self.signupLeadingConstraint.constant = 134
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }else
+        {
+            // do something when click again on login button , your code will be here
+        }
     }
     
-    @IBAction func selectUser(_ sender: UIButton)
+    @IBAction func clickedSignup(_ sender: Any)
     {
-        print("\nUser was selected.")
-    }
-    
-    @IBAction func addUser(_ sender: UIButton)
-    {
-        print("\nUser was created.")
+        if signupLeadingConstraint.constant == 134
+        {
+            UIView.animate(withDuration: 0.4, animations:
+            {
+                self.loginCard.transform = CGAffineTransform(translationX: 50, y: 200).rotated(by: 100)
+                self.view.sendSubview(toBack: self.loginCard)
+                self.signupCard.transform = CGAffineTransform(translationX: -50, y: -200).rotated(by: -100)
+                self.signupLeadingConstraint.constant = 46
+                self.view.layoutIfNeeded()
+                
+            })
+            {(true) in
+                UIView.animate(withDuration: 0.5, animations:
+                {
+                    self.loginCard.transform = CGAffineTransform(translationX: 100, y: -200).rotated(by: -150)
+                    self.signupCard.transform = CGAffineTransform(translationX: -100, y: 200).rotated(by: 150)
+                    
+                    self.loginCard.transform = CGAffineTransform(translationX: 0, y: 0).rotated(by:-CGFloat(Double.pi/2))
+                    self.signupCard.transform = CGAffineTransform(translationX: 0, y: 0).rotated(by:0)
+                    
+                    self.loginLeadingConstraint.constant = 134
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }else
+        {
+            // do something when click again on login button , your code will be here
+        }
     }
 }
 
