@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Kids_Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Kids_Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -38,6 +38,9 @@
                                     <constraint firstAttribute="height" constant="150" id="xMO-iz-NME"/>
                                 </constraints>
                                 <state key="normal" image="profilePlaceholder"/>
+                                <connections>
+                                    <action selector="selectUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bMB-cP-xZc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-TX-7NQ">
                                 <rect key="frame" x="150" y="416.5" width="75" height="75"/>
@@ -46,6 +49,9 @@
                                     <constraint firstAttribute="width" constant="75" id="ej5-eq-nb7"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="pinkPlusSymbol"/>
+                                <connections>
+                                    <action selector="addUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hy6-y7-mIA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95493653410000001" green="0.46828518800000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,6 +65,10 @@
                             <constraint firstItem="mDc-Cn-KxO" firstAttribute="centerX" secondItem="cLk-qZ-GnG" secondAttribute="centerX" id="mqF-bd-fkr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addUserButton" destination="nXQ-TX-7NQ" id="IgJ-C1-L8V"/>
+                        <outlet property="profileImageView" destination="mDc-Cn-KxO" id="Isi-Ql-d3U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
